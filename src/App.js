@@ -8,41 +8,41 @@ export default function App() {
   const [operator, setOperator] = useState("");
   const [result, setResult] = useState(0);
   const handleNumberClicked = (number) => {
-    return !operator
-      ? setFirstNumber(firstNumber + number)
-      : setSecondNumber(secondNumber + number);
+    return setFirstNumber(firstNumber + number);
   };
   const handleOperatorClicked = (operator) => {
-    return setOperator(operator);
+    return (
+      setOperator(operator),
+      setSecondNumber(firstNumber),
+      setResult(firstNumber),
+      setFirstNumber("")
+    );
   };
   const handleReset = () => {
     setFirstNumber("");
     setOperator("");
     setSecondNumber("");
-    setResult(0);
+    // setResult(0);
   };
   const handleCalculation = () => {
     const parseFirstNum = parseInt(firstNumber, 10);
     const parseSecondNum = parseInt(secondNumber, 10);
     switch (operator) {
       case "+":
-        setResult(parseFirstNum + parseSecondNum);
+        setFirstNumber(parseFirstNum + parseSecondNum);
         break;
       case "-":
-        setResult(parseFirstNum - parseSecondNum);
+        setFirstNumber(parseFirstNum - parseSecondNum);
         break;
       case "x":
-        setResult(parseFirstNum * parseSecondNum);
+        setFirstNumber(parseFirstNum * parseSecondNum);
         break;
       case "/":
-        setResult(parseFirstNum / parseSecondNum);
+        setFirstNumber(parseFirstNum / parseSecondNum);
         break;
     }
   };
-
-  const display = !secondNumber
-    ? firstNumber || result
-    : result || secondNumber;
+  const display = firstNumber === "" ? result : firstNumber;
 
   return (
     <div className="App">
