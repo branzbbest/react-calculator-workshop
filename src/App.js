@@ -22,7 +22,7 @@ export default function App() {
     setFirstNumber("");
     setOperator("");
     setSecondNumber("");
-    // setResult(0);
+    setResult(0);
   };
   const handleCalculation = () => {
     const parseFirstNum = parseInt(firstNumber, 10);
